@@ -27,9 +27,25 @@ public class ArticleController {
 
 
     @ApiOperation(value = "获取单篇文章", notes = "获取单篇文章")
-    @RequestMapping(value = "/getone", method = RequestMethod.GET)
-    public String getOne() {
+    @RequestMapping(value = "/getone/{title}", method = RequestMethod.GET)
+    @ApiImplicitParam(name = "title", value = "文章名", required = true, paramType = "path") //http://localhost:8080/art/getone/{title}
+    public String getOne(String title) {
         return "单篇";
+    }
+
+    
+    @ApiOperation(value = "查询文章作者名", notes = "获取文章篇文章")
+    @RequestMapping(value = "/getAuthor", method = RequestMethod.POST)
+    @ApiImplicitParam(name = "title", value = "文章名", required = true, paramType = "form")
+    public String getAuthor(String title) {
+        return "Tracy";
+    }
+    
+    @ApiOperation(value = "查询某个作者的文章", notes = "获取文章篇文章")
+    @RequestMapping(value = "/getAuthorBooks", method = RequestMethod.GET)
+    @ApiImplicitParam(name = "AuthorName", value = "文章名", required = true, paramType = "query")  //即query 是查询路径带？的 eg:http://localhost:8080/art/getAuthorBooks?AuthorName=lucy
+    public String getAuthorBooks(String AuthorName) {
+        return "Tracy' life";
     }
 
 }
